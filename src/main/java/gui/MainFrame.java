@@ -10,13 +10,14 @@ public class MainFrame extends JFrame {
     }
 
     public void createAndShowGUI() {
-        Image img = new ImageIcon("src/main/resources/4293815.png").getImage();
-        this.setSize(img.getWidth(null) + 100, img.getHeight(null) + 100);
+        Image spike = new ImageIcon("src/main/resources/4293815.png").getImage();
+        Image ball = new ImageIcon("src/main/resources/ball.png").getImage();
+        this.setSize(spike.getWidth(null) + 100, spike.getHeight(null) + 100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(true);
 
-        RayDetectionTestPanel contents = new RayDetectionTestPanel(img);
+        TriangulationTestPanel contents = new TriangulationTestPanel(ball);
 
         this.add(contents);
 
