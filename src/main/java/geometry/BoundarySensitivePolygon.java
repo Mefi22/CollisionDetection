@@ -8,7 +8,7 @@ import java.util.List;
 import static geometry.GeometricToolbox.clockwiseSort;
 import static geometry.RayDetection.getVertexModel;
 
-public class BoundarySensitivePolygon extends Polygon {
+class BoundarySensitivePolygon extends Polygon {
     private ArrayList<Point> boundaryPoints = new ArrayList<>();
     private final transient BufferedImage image;
     private Point pivot;

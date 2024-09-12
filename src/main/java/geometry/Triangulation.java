@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Triangulation {
+class Triangulation {
     private final BufferedImage image;
     private final Polygon polygon;
     private final ArrayList<BoundarySensitivePolygon> triangles = new ArrayList<>();

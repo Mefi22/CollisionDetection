@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class RayDetection {
+class RayDetection {
     private RayDetection() {}
 
     protected static List<Point> getVertexModel(BufferedImage bImage, int axes, Point pivot) {

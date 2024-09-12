@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class GeometricToolbox {
+class GeometricToolbox {
     private GeometricToolbox() {}
 
     protected static List<Point> clockwiseSort(List<Point> points, Point pivot) {
