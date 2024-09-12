@@ -55,6 +55,17 @@ public class GraphicalObject {
         triangulation = new Triangulation(bImage, boundingPolygon);
     }
 
+    public boolean collides(GraphicalObject gObj2) {
+        for (BoundarySensitivePolygon triangle1 : triangulation.getTriangles()) {
+            for (Polygon triangle2 : gObj2.getTriangulation()) {
+                BoundarySensitivePolygon castTriangle2 = (BoundarySensitivePolygon) triangle2;
+                if (triangle1.intersects(castTriangle2))
+                    return true;
+            }
+        }
+        return false;
+    }
+
     public BufferedImage getbImage() {
         return bImage;
     }

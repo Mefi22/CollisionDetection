@@ -67,13 +67,13 @@ class GeometricToolbox {
             if (p1.x - pivot.x  >= 0 && p2.x - pivot.x < 0) return 1;
             if (p1.x - pivot.x < 0 && p2.x - pivot.x >= 0) return -1;
             if (p1.x - pivot.x == 0 && p2.x - pivot.x == 0) return Integer.compare(p1.y, p2.y);
-            return crossProduct(pivot, p1, p2);
+            return crossProduct(pivot, p1, pivot, p2);
         };
     }
 
-    private static int crossProduct (Point center, Point p1, Point p2) {
-        // Cross product of two vectors: centerP1 and centerP2
-        return (p1.x - center.x) * (p2.y - center.y) - (p1.y - center.y) * (p2.x - center.x);
+    protected static int crossProduct (Point v1, Point v2, Point u1, Point u2) {
+        // Cross product of two vectors: v1v2 and u1u2
+        return (v2.x - v1.x) * (u2.y - u1.y) - (v2.y - v1.y) * (u2.x - u1.x);
     }
 
     protected static Polygon pointsToPolygon(List<Point> points) {
