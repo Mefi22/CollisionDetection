@@ -1,7 +1,6 @@
 package gui;
 
 import geometry.GraphicalObject;
-import imagetools.Toolbox;
 
 import javax.swing.*;
 import java.awt.*;
