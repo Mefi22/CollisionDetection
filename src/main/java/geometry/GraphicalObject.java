@@ -55,6 +55,10 @@ public class GraphicalObject {
         triangulation = new Triangulation(bImage, boundingPolygon);
     }
 
+    public BufferedImage getbImage() {
+        return bImage;
+    }
+
     public Polygon getBoundingPolygon() {
         return boundingPolygon;
     }
