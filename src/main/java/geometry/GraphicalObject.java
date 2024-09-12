@@ -59,7 +59,7 @@ public class GraphicalObject {
         return boundingPolygon;
     }
 
-    public List<BoundarySensitivePolygon> getTriangulation() {
-        return triangulation.getTriangles();
+    public List<Polygon> getTriangulation() {
+        return new ArrayList<>(triangulation.getTriangles());
     }
 }
