@@ -30,7 +30,7 @@ public class GraphicalObject {
 
     public void refine() {
         for (BoundarySensitivePolygon triangle : triangulation.getTriangles())
-            triangle.updateBoundary();
+            triangle.updateBoundary(PRECISION);
         ArrayList<Point> pivots = new ArrayList<>();
         HashMap<Point, BoundarySensitivePolygon> pivotToTriangle = new HashMap<>();
         for (BoundarySensitivePolygon triangle : triangulation.getTriangles()) {

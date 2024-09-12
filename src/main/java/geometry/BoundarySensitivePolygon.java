@@ -9,7 +9,6 @@ import static geometry.GeometricToolbox.clockwiseSort;
 import static geometry.RayDetection.getVertexModel;
 
 public class BoundarySensitivePolygon extends Polygon {
-    public static final int PRECISION = 10;
     private ArrayList<Point> boundaryPoints = new ArrayList<>();
     private final transient BufferedImage image;
     private Point pivot;
@@ -18,9 +17,11 @@ public class BoundarySensitivePolygon extends Polygon {
         this.image = image;
     }
 
-    public void updateBoundary() {
+    protected void updateBoundary(int precision) {
         setPivot();
-        boundaryPoints = (ArrayList<Point>) clockwiseSort(getVertexModel(image, PRECISION, pivot, this), pivot);
+        boundaryPoints = (ArrayList<Point>) clockwiseSort(
+                getVertexModel(image, precision, pivot, this),
+                pivot);
     }
 
     private void setPivot() {
