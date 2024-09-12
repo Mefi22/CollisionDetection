@@ -20,7 +20,7 @@ public class GraphicalObject {
     private final Point center;
 
     public GraphicalObject(Image image) {
-        this(image, 20);
+        this(image, 10);
     }
 
     public GraphicalObject(Image image, int precision) {
