@@ -41,7 +41,9 @@ public class CollisionTest extends JFrame {
         this.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gObj2.moveUlCornerTo(new Point(evt.getX(), evt.getY()));
+                gObj2.moveUlCornerTo(new Point(
+                        evt.getX() - gObj2.getBImage().getWidth() / 2,
+                        evt.getY() - gObj2.getBImage().getHeight() / 2));
                 repaint();
             }
         });
