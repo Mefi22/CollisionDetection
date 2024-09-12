@@ -13,24 +13,29 @@ import static geometry.GeometricToolbox.pointsToPolygon;
 import static geometry.RayDetection.getVertexModel;
 
 public class GraphicalObject {
-    private static final int PRECISION = 20;
+    private final int precision;
     private final BufferedImage bImage;
     private Polygon boundingPolygon;
     private Triangulation triangulation;
     private final Point center;
 
     public GraphicalObject(Image image) {
+        this(image, 20);
+    }
+
+    public GraphicalObject(Image image, int precision) {
+        this.precision = precision;
         bImage = Toolbox.getBufferedImage(image);
         center = new Point(bImage.getWidth()/2, bImage.getHeight()/2);
         boundingPolygon = pointsToPolygon (clockwiseSort (
-                                getVertexModel(bImage, PRECISION, center),
-                                center));
+                getVertexModel(bImage, precision, center),
+                center));
         triangulation = new Triangulation(bImage, boundingPolygon);
     }
 
     public void refine() {
         for (BoundarySensitivePolygon triangle : triangulation.getTriangles())
-            triangle.updateBoundary(PRECISION);
+            triangle.updateBoundary(precision);
         ArrayList<Point> pivots = new ArrayList<>();
         HashMap<Point, BoundarySensitivePolygon> pivotToTriangle = new HashMap<>();
         for (BoundarySensitivePolygon triangle : triangulation.getTriangles()) {
