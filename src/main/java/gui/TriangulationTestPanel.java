@@ -1,5 +1,6 @@
 package gui;
 
+import geometry.GraphicalObject;
 import imagetools.Toolbox;
 
 import javax.swing.*;
@@ -22,9 +23,9 @@ public class TriangulationTestPanel extends JPanel {
 
         g2d.drawImage(img, 0, 0, null);
 
-        GraphicalObject gObj = new GraphicalObject(Toolbox.getBufferedImage(img));
+        GraphicalObject gObj = new GraphicalObject(img);
         gObj.refine();
-        System.out.println("Number of triangles: " + gObj.getTriangulation().getTriangles().size());
+        System.out.println("Number of triangles: " + gObj.getTriangulation().size());
         drawBoundary(g2d, gObj);
         drawTriangles(g2d, gObj);
     }
@@ -37,7 +38,7 @@ public class TriangulationTestPanel extends JPanel {
 
     private void drawTriangles(Graphics2D g2d, GraphicalObject gObj) {
         g2d.setStroke(new BasicStroke(1));
-        for (Polygon triangle : gObj.getTriangulation().getTriangles()) {
+        for (Polygon triangle : gObj.getTriangulation()) {
             g2d.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255), 200));
             g2d.fillPolygon(triangle);
             g2d.setColor(Color.BLUE);

@@ -14,7 +14,7 @@ public class BoundarySensitivePolygon extends Polygon {
     private final transient BufferedImage image;
     private Point pivot;
 
-    public BoundarySensitivePolygon(BufferedImage image) {
+    protected BoundarySensitivePolygon(BufferedImage image) {
         this.image = image;
     }
 
@@ -23,7 +23,7 @@ public class BoundarySensitivePolygon extends Polygon {
         boundaryPoints = (ArrayList<Point>) clockwiseSort(getVertexModel(image, PRECISION, pivot, this), pivot);
     }
 
-    public void setPivot() {
+    private void setPivot() {
         int xAvg = 0;
         int yAvg = 0;
 
@@ -35,11 +35,11 @@ public class BoundarySensitivePolygon extends Polygon {
         pivot = new Point(xAvg/npoints, yAvg/npoints);
     }
 
-    public Point getPivot() {
+    protected Point getPivot() {
         return pivot;
     }
 
-    public List<Point> getBoundaryPoints() {
+    protected List<Point> getBoundaryPoints() {
         return boundaryPoints;
     }
 }

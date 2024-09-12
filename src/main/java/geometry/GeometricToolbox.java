@@ -9,13 +9,13 @@ import java.util.List;
 public class GeometricToolbox {
     private GeometricToolbox() {}
 
-    public static List<Point> clockwiseSort(List<Point> points, Point pivot) {
+    protected static List<Point> clockwiseSort(List<Point> points, Point pivot) {
         ArrayList<Point> sortedPoints = new ArrayList<>(points);
         sortedPoints.sort(clockwiseComparator(pivot));
         return sortedPoints;
     }
 
-    public static boolean isInBound(Point point, Polygon bound) {
+    protected static boolean isInBound(Point point, Polygon bound) {
         boolean lastPointAbove = bound.ypoints[bound.npoints - 1] < point.y;
 
         int cnt = 0;
@@ -76,7 +76,7 @@ public class GeometricToolbox {
         return (p1.x - center.x) * (p2.y - center.y) - (p1.y - center.y) * (p2.x - center.x);
     }
 
-    public static Polygon pointsToPolygon(List<Point> points) {
+    protected static Polygon pointsToPolygon(List<Point> points) {
         Polygon polygon = new Polygon();
         for (Point point : points) {
             polygon.addPoint(point.x, point.y);

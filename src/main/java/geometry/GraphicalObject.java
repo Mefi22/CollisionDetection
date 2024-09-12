@@ -1,12 +1,12 @@
-package gui;
+package geometry;
 
-import geometry.BoundarySensitivePolygon;
-import geometry.Triangulation;
+import imagetools.Toolbox;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static geometry.GeometricToolbox.clockwiseSort;
 import static geometry.GeometricToolbox.pointsToPolygon;
@@ -14,19 +14,18 @@ import static geometry.RayDetection.getVertexModel;
 
 public class GraphicalObject {
     private static final int PRECISION = 20;
-    private final BufferedImage image;
+    private final BufferedImage bImage;
     private Polygon boundingPolygon;
     private Triangulation triangulation;
     private final Point center;
 
-    public GraphicalObject(BufferedImage image) {
-        this.image = image;
-        center = new Point(image.getWidth()/2, image.getHeight()/2);
-        ArrayList<Point> points = (ArrayList<Point>) clockwiseSort(
-                getVertexModel(image, PRECISION, center),
-                center);
-        boundingPolygon = pointsToPolygon(points);
-        triangulation = new Triangulation(image, boundingPolygon);
+    public GraphicalObject(Image image) {
+        bImage = Toolbox.getBufferedImage(image);
+        center = new Point(bImage.getWidth()/2, bImage.getHeight()/2);
+        boundingPolygon = pointsToPolygon (clockwiseSort (
+                                getVertexModel(bImage, PRECISION, center),
+                                center));
+        triangulation = new Triangulation(bImage, boundingPolygon);
     }
 
     public void refine() {
@@ -48,14 +47,14 @@ public class GraphicalObject {
         }
 
         boundingPolygon = pointsToPolygon(refinedBoundary);
-        triangulation = new Triangulation(image, boundingPolygon);
+        triangulation = new Triangulation(bImage, boundingPolygon);
     }
 
     public Polygon getBoundingPolygon() {
         return boundingPolygon;
     }
 
-    public Triangulation getTriangulation() {
-        return triangulation;
+    public List<BoundarySensitivePolygon> getTriangulation() {
+        return triangulation.getTriangles();
     }
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 public class RayDetection {
     private RayDetection() {}
 
-    public static List<Point> getVertexModel(BufferedImage bImage, int axes, Point pivot) {
+    protected static List<Point> getVertexModel(BufferedImage bImage, int axes, Point pivot) {
         Polygon bound = new Polygon();
         bound.addPoint(0, 0);
         bound.addPoint(bImage.getWidth() - 1, 0);
@@ -20,7 +20,7 @@ public class RayDetection {
         return getVertexModel(bImage, axes, pivot, bound);
     }
 
-    public static List<Point> getVertexModel(BufferedImage bImage, int axes, Point pivot, Polygon bound) {
+    protected static List<Point> getVertexModel(BufferedImage bImage, int axes, Point pivot, Polygon bound) {
         ArrayList<Point> points = new ArrayList<>();
 
         //  Pivotal rays

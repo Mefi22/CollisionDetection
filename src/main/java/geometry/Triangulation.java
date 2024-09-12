@@ -12,7 +12,7 @@ public class Triangulation {
     private final Polygon polygon;
     private final ArrayList<BoundarySensitivePolygon> triangles = new ArrayList<>();
 
-    public Triangulation(BufferedImage image, Polygon polygon) {
+    protected Triangulation(BufferedImage image, Polygon polygon) {
         this.image = image;
         this.polygon = polygon;
 
@@ -37,7 +37,7 @@ public class Triangulation {
         }
     }
 
-    public List<BoundarySensitivePolygon> getTriangles() {
+    protected List<BoundarySensitivePolygon> getTriangles() {
         return triangles;
     }
 }
