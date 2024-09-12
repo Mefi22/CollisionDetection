@@ -19,6 +19,13 @@ class Triangulation {
         triangulate();
     }
 
+    protected void translate(int dx, int dy) {
+        polygon.translate(dx, dy);
+        for (BoundarySensitivePolygon triangle : triangles) {
+            triangle.translate(dx, dy);
+        }
+    }
+
     private void triangulate() {
         double[] coordinates = new double[polygon.npoints * 2];
         for (int i = 0; i < polygon.npoints; i++) {

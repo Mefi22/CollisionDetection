@@ -13,6 +13,7 @@ import static geometry.GeometricToolbox.pointsToPolygon;
 import static geometry.RayDetection.getVertexModel;
 
 public class GraphicalObject {
+    private final Point ulCorner;
     private final int precision;
     private final BufferedImage bImage;
     private Polygon boundingPolygon;
@@ -24,6 +25,7 @@ public class GraphicalObject {
     }
 
     public GraphicalObject(Image image, int precision) {
+        this.ulCorner = new Point(0, 0);
         this.precision = precision;
         bImage = Toolbox.getBufferedImage(image);
         center = new Point(bImage.getWidth()/2, bImage.getHeight()/2);
@@ -66,7 +68,22 @@ public class GraphicalObject {
         return false;
     }
 
-    public BufferedImage getbImage() {
+    public void translate(int dx, int dy) {
+        ulCorner.translate(dx, dy);
+        boundingPolygon.translate(dx, dy);
+        triangulation.translate(dx, dy);
+        center.translate(dx, dy);
+    }
+
+    public Point getUlCorner() {
+        return ulCorner;
+    }
+
+    public void moveUlCornerTo(Point newUlCorner) {
+        translate(newUlCorner.x - ulCorner.x, newUlCorner.y - ulCorner.y);
+    }
+
+    public BufferedImage getBImage() {
         return bImage;
     }
 

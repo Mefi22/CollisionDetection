@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class GraphicalObjectTest extends JFrame {
+public class TriangulationTest extends JFrame {
     private final transient GraphicalObject gObj;
     Random random = new Random();
 
-    public GraphicalObjectTest(GraphicalObject gObj, String title) {
+    public TriangulationTest(GraphicalObject gObj, String title) {
         super(title);
         this.gObj = gObj;
     }
@@ -21,8 +21,8 @@ public class GraphicalObjectTest extends JFrame {
     }
 
     private void init() {
-        this.setSize(gObj.getbImage().getWidth(null) + 50,
-                    gObj.getbImage().getHeight(null) + 50);
+        this.setSize(gObj.getBImage().getWidth(null) + 50,
+                    gObj.getBImage().getHeight(null) + 50);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
@@ -32,7 +32,7 @@ public class GraphicalObjectTest extends JFrame {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
 
-                g2d.drawImage(gObj.getbImage(), 0, 0, null);
+                g2d.drawImage(gObj.getBImage(), 0, 0, null);
 
                 drawBoundary(g2d);
                 drawTriangles(g2d);

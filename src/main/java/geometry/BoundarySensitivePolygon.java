@@ -26,6 +26,16 @@ class BoundarySensitivePolygon extends Polygon {
                 pivot);
     }
 
+    @Override
+    public void translate(int dx, int dy) {
+        super.translate(dx, dy);
+        for (Point boundaryPoint : boundaryPoints) {
+            boundaryPoint.translate(dx, dy);
+        }
+        if (pivot != null)
+            pivot.translate(dx, dy);
+    }
+
     private void setPivot() {
         int xAvg = 0;
         int yAvg = 0;
@@ -53,8 +63,9 @@ class BoundarySensitivePolygon extends Polygon {
                         xpoints[i], ypoints[i],
                         xpoints[(i+1)%npoints], ypoints[(i+1)%npoints],
                         t2.xpoints[j], t2.ypoints[j],
-                        t2.xpoints[(j+1)%t2.npoints], t2.ypoints[(j+1)%t2.npoints]))
+                        t2.xpoints[(j+1)%t2.npoints], t2.ypoints[(j+1)%t2.npoints])) {
                     return true;
+                }
             }
         }
 
@@ -63,18 +74,16 @@ class BoundarySensitivePolygon extends Polygon {
     }
 
     private boolean containsHelper(Point p) {
-        for (int i=0; i<npoints; i++) {
-            if (sameSide(
-                    p,
-                    new Point(xpoints[i], ypoints[i]),
-                    new Point(xpoints[(i+1)%npoints], ypoints[(i+1)%npoints]),
-                    new Point(xpoints[(i+2)%npoints], ypoints[(i+2)%npoints])))
-                return true;
-        }
-        return false;
+        Point a = new Point(xpoints[0], ypoints[0]);
+        Point b = new Point(xpoints[1], ypoints[1]);
+        Point c = new Point(xpoints[2], ypoints[2]);
+
+        return sameSide(p, a, b, c) &&
+                sameSide(p, b, a, c) &&
+                sameSide(p, c, a, b);
     }
 
     private boolean sameSide(Point p1, Point p2, Point a, Point b) {
-        return crossProduct(a, b, a, p1) * crossProduct(a, b, a, p2) >= 0;
+        return ((long) crossProduct(a, b, a, p1)) * crossProduct(a, b, a, p2) >= 0;
     }
 }
