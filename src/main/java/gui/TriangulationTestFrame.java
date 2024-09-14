@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class TriangulationTest extends JFrame {
+public class TriangulationTestFrame extends JFrame {
     private final transient GraphicalObject gObj;
     Random random = new Random();
 
-    public TriangulationTest(GraphicalObject gObj, String title) {
+    public TriangulationTestFrame(GraphicalObject gObj, String title) {
         super(title);
         this.gObj = gObj;
     }
@@ -21,8 +21,9 @@ public class TriangulationTest extends JFrame {
     }
 
     private void init() {
-        this.setSize(gObj.getBImage().getWidth(null) + 50,
-                    gObj.getBImage().getHeight(null) + 50);
+        this.setSize(gObj.getBImage().getWidth(null) + 100 ,
+                    gObj.getBImage().getHeight(null) + 100);
+        this.getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
@@ -38,8 +39,15 @@ public class TriangulationTest extends JFrame {
                 drawTriangles(g2d);
             }
         };
-
+        contents.setSize(gObj.getBImage().getWidth(), gObj.getBImage().getHeight());
         this.add(contents);
+
+
+        JLabel precisionLabel = new JLabel("Precision: " + gObj.getPrecision());
+        this.add(precisionLabel);
+
+        JLabel triangleCountLabel = new JLabel("Number of Triangles: " + gObj.getTriangulation().size());
+        this.add(triangleCountLabel);
     }
 
     private void drawBoundary(Graphics2D g2d) {

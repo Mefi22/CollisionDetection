@@ -1,6 +1,6 @@
 import geometry.GraphicalObject;
-import gui.CollisionTest;
-import gui.TriangulationTest;
+import gui.CollisionTestFrame;
+import gui.TriangulationTestFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,27 +11,28 @@ public class Main {
     }
 
     private static void testTriangles() {
-        Image ballImage = new ImageIcon("src/main/resources/ball.png").getImage();
-        GraphicalObject ball1 = new GraphicalObject(ballImage);
+        Image image = new ImageIcon("src/main/resources/sonic-the-hedgehog.png").getImage();
+        GraphicalObject gObj = new GraphicalObject(image,20);
 
         javax.swing.SwingUtilities.invokeLater(() -> {
-            TriangulationTest ball1Test = new TriangulationTest(ball1, "Triangles of ball1");
-            ball1Test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            ball1Test.showGUI();
+            TriangulationTestFrame shapeTestFrame = new TriangulationTestFrame(gObj, "Triangulation of Sonic");
+            shapeTestFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            shapeTestFrame.showGUI();
 
-            System.out.println("Number of triangles in ball1: " + ball1.getTriangulation().size());
+            System.out.println("Number of triangles: " + gObj.getTriangulation().size());
         });
     }
 
     private static void testCollision() {
-        Image ballImage = new ImageIcon("src/main/resources/ball.png").getImage();
-        GraphicalObject ball1 = new GraphicalObject(ballImage);
-        GraphicalObject ball2 = new GraphicalObject(ballImage);
+        Image image1 = new ImageIcon("src/main/resources/ball.png").getImage();
+        Image image2 = new ImageIcon("src/main/resources/sonic-the-hedgehog.png").getImage();
+        GraphicalObject gObj1 = new GraphicalObject(image1);
+        GraphicalObject gObj2 = new GraphicalObject(image2);
 
         javax.swing.SwingUtilities.invokeLater(() -> {
-            CollisionTest ballCollision = new CollisionTest(ball1, ball2, "Collision of ball1 and ball2");
-            ballCollision.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            ballCollision.showGUI();
+            CollisionTestFrame collisionTestFrame = new CollisionTestFrame(gObj1, gObj2, "Collision of gObj1 and gObj2");
+            collisionTestFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            collisionTestFrame.showGUI();
         });
     }
 }

@@ -94,4 +94,8 @@ public class GraphicalObject {
     public List<Polygon> getTriangulation() {
         return new ArrayList<>(triangulation.getTriangles());
     }
+
+    public int getPrecision() {
+        return precision;
+    }
 }

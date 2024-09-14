@@ -4,12 +4,14 @@ import geometry.GraphicalObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class CollisionTest extends JFrame {
+public class CollisionTestFrame extends JFrame {
     private final transient GraphicalObject gObj1;
     private final transient GraphicalObject gObj2;
 
-    public CollisionTest(GraphicalObject gObj1, GraphicalObject gObj2, String title) {
+    public CollisionTestFrame(GraphicalObject gObj1, GraphicalObject gObj2, String title) {
         super(title);
         this.gObj1 = gObj1;
         this.gObj2 = gObj2;
@@ -21,8 +23,8 @@ public class CollisionTest extends JFrame {
     }
 
     private void init() {
-        this.setSize((gObj1.getBImage().getWidth() + gObj2.getBImage().getWidth()) * 2,
-                (gObj1.getBImage().getHeight() + gObj2.getBImage().getHeight()) * 2);
+        this.setSize((gObj1.getBImage().getWidth() + gObj2.getBImage().getWidth()),
+                (gObj1.getBImage().getHeight() + gObj2.getBImage().getHeight()));
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
@@ -38,9 +40,10 @@ public class CollisionTest extends JFrame {
             }
         };
 
-        this.addMouseListener(new java.awt.event.MouseAdapter() {
+        this.addMouseMotionListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseMoved(MouseEvent evt) {
+                super.mouseMoved(evt);
                 gObj2.moveUlCornerTo(new Point(
                         evt.getX() - gObj2.getBImage().getWidth() / 2,
                         evt.getY() - gObj2.getBImage().getHeight() / 2));
